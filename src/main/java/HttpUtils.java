@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -159,19 +158,6 @@ public class HttpUtils {
     }
 
     public static void main(String[] args) {
-        Map<String, Object> paramMap = new HashMap<String, Object>();
-        paramMap.put("auth", "DYluhhXUNHFsv1mAzGRrl9n1W4Jkvdsv");
-        paramMap.put("key", "qwe123");
-        paramMap.put("uid", "1");
-        paramMap.put("head", "2");
-        paramMap.put("name", "qwe1");
-        paramMap.put("vip", "1");
-        paramMap.put("card", "3");
-        Object msg = doGetBackJson("http://10.10.10.95:8181/server/reg", paramMap);
-        paramMap.put("key", "qwe456");
-        paramMap.put("uid", "2");
-        msg = doGetBackJson("http://10.10.10.95:8181/server/reg", paramMap);
-        System.out.println(msg);
     }
 
 }
