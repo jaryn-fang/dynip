@@ -32,10 +32,13 @@ class CheakIp implements Runnable {
         String nowIp = Iputils.getV4IP();
         if(!ip.equals(nowIp)) {
             //调用接口
-            Object obj = HttpUtils.doGetBackJson(AliUtils.update(nowIp, reId), null);
-            if(obj != null) {
-                ip = nowIp;
-                System.out.println("更新了ip地址...." + ip);
+            Object obj1 = HttpUtils.doGetBackJson(AliUtils.update(nowIp, reId), null);
+            if(obj1 != null) {
+                Object obj2 = HttpUtils.doGetBackJson(AliUtils.enable(nowIp, reId), null);
+                if(obj2 != null) {
+                    ip = nowIp;
+                    System.out.println("更新了ip地址...." + ip);
+                }
             }
         }
     }
