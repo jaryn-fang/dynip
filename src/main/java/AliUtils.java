@@ -133,6 +133,26 @@ public class AliUtils {
     }
 
     /**
+     * 执行解析
+     *
+     * @param ip
+     * @param recordId
+     * @return
+     */
+    public final static String enable(String ip, String recordId) {
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters = fillParameters(parameters);
+
+        parameters.put("Action", "SetDomainRecordStatus");
+        parameters.put("RecordId", recordId);
+        parameters.put("Status", "Enable");
+
+        String url = getUrl(parameters);
+        System.out.println(url);
+        return url;
+    }
+
+    /**
      * 获取URL的地址
      *
      * @param parameters
