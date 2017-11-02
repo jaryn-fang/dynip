@@ -1,7 +1,6 @@
 
 import java.util.Properties;
 
-import org.apache.log4j.PropertyConfigurator;
 
 /**
  * <pre>
@@ -16,14 +15,14 @@ import org.apache.log4j.PropertyConfigurator;
 public class Log {
 
     private static final String NEW_LINE = "\r\n";
-    private static org.apache.log4j.Logger logger = null;
+    private static org.apache.logging.log4j.Logger logger = null;
     private static final String SELF_NAME = Log.class.getName();
     private static final Properties pro = new Properties();
 
     public final static boolean init(Class<?> clazz) {
         final String serverName = clazz.getSimpleName().toLowerCase();
-        boolean isProduction = "production".equals(System.getenv("CUR_ENV"));
-        logger = org.apache.log4j.Logger.getLogger("");
+       // boolean isProduction = "production".equals(System.getenv("CUR_ENV"));
+        logger = org.apache.logging.log4j.LogManager.getLogger();
         // pro.put("log4j.rootLogger", "CONSOLE,DEBUG,INFO,ERROR,FATAL");
         pro.put("log4j.rootLogger", "DEBUG,IC,I,E,F");
         pro.put("log4j.addivity.org.apache", "true");
