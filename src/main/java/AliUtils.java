@@ -25,9 +25,9 @@ public class AliUtils {
 
     public static void main(String[] args) {
         //update("10.10.10.1", "1111");
-        get();
+        //get();
         //System.out.println(HttpUtils.doGetBackJson(get(), null));
-        //System.out.println(HttpUtils.doGetBackJson(update("113.116.156.9", "3604589338286080"), null));
+        System.out.println(HttpUtils.doGetBackJson(update(Iputils.getV4IP(), "3604589338286080"), null));
         // getAliIp();
     }
 
@@ -122,7 +122,7 @@ public class AliUtils {
 
         parameters.put("Action", "UpdateDomainRecord");
         parameters.put("RecordId", recordId);
-        parameters.put("RR", "@");
+        parameters.put("RR", "www");
         parameters.put("Type", "A");
         parameters.put("Value", ip);
         parameters.put("Type", "A");
