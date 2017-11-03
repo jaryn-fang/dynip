@@ -93,7 +93,6 @@ public class AliUtils {
      * }
      * }
      *
-     * @param domainName 域名
      * @return
      */
     public final static String get() {
@@ -104,7 +103,7 @@ public class AliUtils {
         parameters.put("DomainName", DOMAINNAME);
 
         String url = getUrl(parameters);
-        System.out.println(url);
+        Log.info("get:   " + url);
         return url;
     }
 
@@ -128,7 +127,7 @@ public class AliUtils {
         parameters.put("Type", "A");
 
         String url = getUrl(parameters);
-        System.out.println(url);
+        Log.info("update:    " + url);
         return url;
     }
 
@@ -148,7 +147,7 @@ public class AliUtils {
         parameters.put("Status", "Enable");
 
         String url = getUrl(parameters);
-        System.out.println(url);
+        Log.info("enable:    " + url);
         return url;
     }
 

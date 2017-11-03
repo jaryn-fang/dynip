@@ -29,6 +29,7 @@ public class Iputils {
             }
 
         } catch (Exception e) {
+            Log.error("获取ip异常 .....");
             e.printStackTrace();
         } finally{
             if(in!=null){

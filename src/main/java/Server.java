@@ -12,7 +12,7 @@ public class Server {
         String ip = AliUtils.getAliIp(DOMAINNAME);
         String recordId = AliUtils.getAliRecordId(DOMAINNAME);
         if(ip.equals("") || recordId.equals("")) {
-            System.out.println("请求错误...不开启执行器...");
+            Log.error("请求错误...不开启执行器...");
         }
         ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
         scheduledExecutorService.scheduleAtFixedRate(new CheakIp(ip, recordId), 0,1, TimeUnit.MINUTES);
@@ -31,7 +31,7 @@ class CheakIp implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("执行检查....  当前ip： " + ip + "  当前ReId:  " + reId);
+        Log.info("执行检查....  当前ip： " + ip + "  当前ReId:  " + reId);
         String nowIp = Iputils.getV4IP();
         if(nowIp.equals("")){
             return;
@@ -42,7 +42,7 @@ class CheakIp implements Runnable {
             if(obj1 != null) {
                 Object obj2 = HttpUtils.doGetBackJson(AliUtils.enable(nowIp, reId), null);
                 if(obj2 != null) {
-                    System.out.println("更新了ip地址...." + ip + "---->" + nowIp);
+                    Log.info("更新了ip地址...." + ip + "---->" + nowIp);
                     ip = nowIp;
                 }
             }

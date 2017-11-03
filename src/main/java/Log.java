@@ -1,28 +1,24 @@
 
 import java.util.Properties;
 
+import org.apache.log4j.PropertyConfigurator;
 
 /**
  * <pre>
  * 日志工具类
  * 1、配置在代码中初始化，运维无需配置文件
- * 2、获取堆栈性能优化
- * </pre>
- *
- * @author jun.li
- * @time 2017年2月18日 下午4:54:04
  */
 public class Log {
 
     private static final String NEW_LINE = "\r\n";
-    private static org.apache.logging.log4j.Logger logger = null;
+    private static org.apache.log4j.Logger logger = null;
     private static final String SELF_NAME = Log.class.getName();
     private static final Properties pro = new Properties();
 
     public final static boolean init(Class<?> clazz) {
         final String serverName = clazz.getSimpleName().toLowerCase();
-       // boolean isProduction = "production".equals(System.getenv("CUR_ENV"));
-        logger = org.apache.logging.log4j.LogManager.getLogger();
+        boolean isProduction = "production".equals(System.getenv("CUR_ENV"));
+        logger = org.apache.log4j.Logger.getLogger("");
         // pro.put("log4j.rootLogger", "CONSOLE,DEBUG,INFO,ERROR,FATAL");
         pro.put("log4j.rootLogger", "DEBUG,IC,I,E,F");
         pro.put("log4j.addivity.org.apache", "true");
@@ -184,21 +180,6 @@ public class Log {
         logger.fatal(message, t);
     }
 
-    /**** =============================== Cmd或Action执行时间日志部分start ========================== ***/
-    /**
-     * <pre>
-     * 记录消耗时间
-     * !name中不能出现：--
-     * </pre>
-     *
-     * @param name
-     * @param curTime
-     * @param totalTime
-     * @param queueSize
-     */
-    public static void logTime(String name, long curTime, long totalTime, int queueSize, String comment) {
-        Log.fatal("-LogTime--Date=" + TimeUtil.getDateFormat() + "&name=" + name + "&curTime=" + curTime + "&totalTime=" + totalTime + "&queueSize=" + queueSize + "&comment=" + comment);
-    }
 
     public static void logTime(Class<?> clazz, long curTime, long totalTime, int queueSize, String comment) {
         logTime(clazz.getSimpleName(), curTime, totalTime, queueSize, comment);
@@ -209,33 +190,5 @@ public class Log {
     }
     /**** =============================== Cmd或Action执行时间日志部分end ========================== ***/
 
-    /**** =============================== 对象创建和销毁的日志部分start ========================== ***/
 
-    /**
-     * <pre>
-     * 记录创建日志(用于监测对象是否销毁)
-     * </pre>
-     *
-     * @param name
-     * @param comment
-     */
-    public static String logCreateObj(String name, String comment) {
-        String idx = RandomStrUtil.randomStr(8);
-        Log.debug("-LogCreateObj--Index=" + idx + "&Date=" + TimeUtil.getDateFormat() + "&Name=" + name + "&Comment=" + comment);
-        return idx;
-    }
-
-    /**
-     * <pre>
-     * 记录销毁日志(用于监测对象是否销毁)
-     * </pre>
-     *
-     * @param idx 创建时的唯一索引
-     * @param name
-     * @param comment
-     */
-    public static void logGCObj(String idx, String name, String comment) {
-        Log.debug("-LogGCObj--Index=" + idx + "&Date=" + TimeUtil.getDateFormat() + "&Name=" + name + "&Comment=" + comment);
-    }
-    /**** =============================== 对象创建和销毁的日志部分end ========================== ***/
 }

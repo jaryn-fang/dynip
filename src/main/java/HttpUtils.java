@@ -148,7 +148,7 @@ public class HttpUtils {
 
             urlCon.getResponseMessage();
         } catch (IOException e) {
-            System.out.println("urlconnection error , url " + reqUrl);
+            Log.error("urlconnection error , url " + reqUrl);
         } finally {
             if (urlCon != null) {
                 urlCon.disconnect();
