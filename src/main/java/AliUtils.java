@@ -10,8 +10,8 @@ import java.util.*;
 
 public class AliUtils {
 
-    final static String Access_Key_ID = "LTAIC7V3dXJ7mLp4";
-    final static String Access_Key_Secret = "MPNCO5tlMCYnprmuYtEl3n2hYFKtJy";
+    final static String Access_Key_ID = "LTAIC7V3dXJ7mxxx";
+    final static String Access_Key_Secret = "MPNCO5tlMCYnprmuYtEl3n2hYFKxxx";
 
     final static String ALI = "http://alidns.aliyuncs.com/?";
 
